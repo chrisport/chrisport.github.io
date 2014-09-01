@@ -1,0 +1,19 @@
+{
+  "name": "Christoph Portmann",
+  "version": "0.0.1",
+  "authors": [
+    "Christoph Portmann <portmann.christoph@gmail.com>"
+  ],
+  "description": "Chrisport",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "4.1.0"
+  }
+}
