@@ -2,7 +2,9 @@
 layout: post
 title:  "The Art of Redundancy"
 date:   2014-09-01 19:34:00
-categories: Jekyll checkout
+categories: Posts
+author: Christoph Portmann
+author-url: http://chrisport.github.io
 ---
 Today we take a look at **the Art of Redundancy**. 
 Redundancy is not the simple result of copy&paste-coding, it must be grown slowly by a skilled developer. Let us illustrate this on a simple example.
