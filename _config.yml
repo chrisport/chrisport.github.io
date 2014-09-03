@@ -1,11 +1,9 @@
 # Site settings
-title: Chrisport
-name: Christoph Portmann
-description: Coder, Gopher, Katık
+title: Florya Jeans
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: ChristophPort
-github_username:  chrisport
-
+collections:
+  apps:
+    output: true
 # Build settings
 markdown: kramdown

@@ -1,17 +1,23 @@
-<h2 class="footer-heading">{{ site.name }}</h2>
+---
+layout: headless_page
+title: About
+permalink: /about/
+weight : 1
+---
+{% for member in site.data.members %}
 <div class="footer-col-wrapper">
     <div class="footer-col  footer-col-1">
         <ul class="contact-list">
-            <li>{{ site.title }}</li>
-            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            <li>{{ member.name }}</li>
+            <li><a href="mailto:{{ member.email }}">{{ member.email }}</a></li>
         </ul>
     </div>
 
     <div class="footer-col  footer-col-2">
         <ul class="social-media-list">
-            {% if site.github_username %}
+            {% if member.github_username %}
             <li>
-                <a href="https://github.com/{{ site.github_username }}">
+                <a href="https://github.com/{{ member.github_username }}">
               <span class="icon  icon--github">
                 <svg viewBox="0 0 16 16">
                     <path fill="#828282"
@@ -19,14 +25,13 @@
                 </svg>
               </span>
 
-                    <span class="username">{{ site.github_username }}</span>
+                    <span class="username">{{ member.github_username }}</span>
                 </a>
             </li>
             {% endif %}
-
-            {% if site.twitter_username %}
+            {% if member.twitter_username %}
             <li>
-                <a href="https://twitter.com/{{ site.twitter_username }}">
+                <a href="https://twitter.com/{{ member.twitter_username }}">
               <span class="icon  icon--twitter">
                 <svg viewBox="0 0 16 16">
                     <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
@@ -34,7 +39,7 @@
                 </svg>
               </span>
 
-                    <span class="username">{{ site.twitter_username }}</span>
+                    <span class="username">{{ member.twitter_username }}</span>
                 </a>
             </li>
             {% endif %}
@@ -42,6 +47,7 @@
     </div>
 
     <div class="footer-col  footer-col-3">
-        <p class="text">{{ site.description }}</p>
+        <p class="text">{{ member.description }}</p>
     </div>
 </div>
+{% endfor %}
