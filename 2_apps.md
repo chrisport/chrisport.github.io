@@ -3,17 +3,20 @@ layout: default
 title: Apps
 permalink: /apps/
 ---
+<ul class="app-list">
 {% assign sorted_pages = site.apps | sort:site.apps.weight %}
 {% for app in sorted_pages %}
-<li class="app-list">
-  <b><a href="{{app.playlink}}" target="_blank">{{app.title}}</a></b>
-        
-        {{ app.content }}
-  
-  <div align="center">
+<li class="app-list-item">
+  <div class="app-list-item-inner app-logo">
     <a href="{{app.playlink}}" target="_blank">
       <img src="{{app.image}}">
     </a>
   </div>
- </li>
+
+  <div class="app-list-item-inner"> 
+    <b><a href="{{app.playlink}}" target="_blank">{{app.title}}</a></b>
+        {{ app.content }}
+ </div>
+</li>
 {% endfor %}
+</ul>
