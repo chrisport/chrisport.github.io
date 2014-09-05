@@ -1,7 +1,7 @@
 # Site settings
-title: Florya Jeans
+title: chrisport
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "http://chrisport.github.io" # the base hostname & protocol for your site
 collections:
   apps:
     output: true
