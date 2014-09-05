@@ -1,6 +1,38 @@
 <footer class="site-footer">
 
   <div class="wrapper">
+      {% for member in site.data.members %}
+      {% if member.stackoverflow_username %}
+          <span class="social-media-logo">
+              <a href="http://tr.linkedin.com/in/{{ member.stackoverflow_username }}">
+                  <i class="fa fa-stack-overflow fa-2x"></i>
+              </a>
+          </span>
+      {% endif %}
+      {% if member.linkedin_username %}
+          <span class="social-media-logo">
+              <a href="http://tr.linkedin.com/in/{{ member.linkedin_username }}">
+                  <i class="fa fa-linkedin-square fa-2x"></i>
+              </a>
+          </span>
+      {% endif %}
+      {% if member.github_username %}
+          <span class="social-media-logo">
+              <a href="https://github.com/{{ member.github_username }}">
+                  <i class="fa fa-github fa-2x"></i>
+              </a>
+          </span>
+      {% endif %}
+      {% if member.twitter_username %}
+          <span class="social-media-logo">
+              <a href="https://twitter.com/{{ member.twitter_username }}">
+                  <i class="fa fa-twitter fa-2x"></i>
+              </a>
+          </span>
+      {% endif %}
+
+
+      {% endfor %}
 
   </div>
 
