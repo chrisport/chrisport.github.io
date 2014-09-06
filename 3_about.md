@@ -45,11 +45,11 @@ weight : 1
                  {% endif %}
                  {% if member.stackoverflow_username %}
                  <li>
-                     <a href="http://tr.linkedin.com/in/{{ member.stackoverflow_username }}">
-                         <i class="fa fa-stack-overflow fa-lg"></i>
-                         <span class="username">{{member.stackoverflow_username}}</span>
+                     <a href="http://stackoverflow.com/users/3210551/chrisport">
+                        <i class="fa fa-stack-overflow fa-lg"></i>
+                       <span class="username">{{member.stackoverflow_username}}</span>
                      </a>
-                 </li>
+                  </li>
                  {% endif %}
                  </ul>
                  </div>
