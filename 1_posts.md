@@ -1,5 +1,5 @@
 ---
-layout: headless_page
+layout: default
 title: Posts
 permalink: /posts/
 weight : 2
