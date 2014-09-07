@@ -2,7 +2,7 @@
 layout: post
 title:  "The Art of Redundancy"
 date:   2014-09-01 19:34:00
-categories: Posts
+categories: Tech
 author: Christoph Portmann
 author-url: http://chrisport.github.io
 ---
