@@ -127,8 +127,9 @@ The most advanced and interesting solution includes the usage of Java's dynamic 
  the widespread Spring framework.  
  The dynamic proxy stores properties according to the called "set"-method in a Map. Therefore "setFirstname" will store
 the provided as value of the key "firstname". Further it implements "get" and "is", as well as addObserver. RemoveObserver
-is not implemented, since it is not used by the tests. The full code of the Proxy can be found 
-[on gist](https://gist.github.com/chrisport/c2780eff8fa234087751)
+is not implemented, since it is not used by the tests. The full code of the Proxy can be found  
+
+[Code example on gist](https://gist.github.com/chrisport/c2780eff8fa234087751)
 
 This is the **interface of Profile**:
 {% highlight java %}

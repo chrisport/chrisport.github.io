@@ -218,11 +218,14 @@
 }
 
 .post-list {
-  margin-left: 0;
+  margin: 0;
   list-style: none;
 
   > li {
     margin-bottom: $spacing-unit;
+  }
+  > ul {
+    padding-left: 0;
   }
 
   a:link {
@@ -244,7 +247,8 @@
 }
 
 .post-meta-title {
-  font-size: 38px;
+  font-size: 42px;
+  letter-spacing: -1px;
   line-height: 28px;
   color: $text-color-dark;
 }
@@ -275,8 +279,6 @@ hr { width:100%; height:1px; background: #fff }
 }
 
 .post-content {
-  margin-bottom: $spacing-unit;
-
   h2 {
     font-size: 32px;
 
@@ -299,6 +301,16 @@ hr { width:100%; height:1px; background: #fff }
     @include media-query($on-laptop) {
       font-size: 18px;
     }
+  }
+
+  a:link {
+    color: $brand-color-transparent;
+  }
+  a:visited {
+    color: $brand-color-transparent;
+  }
+  a:hover {
+    color: $text-color-dark;
   }
 }
 
@@ -349,7 +361,6 @@ hr { width:100%; height:1px; background: #fff }
 
   h2 {
     font-size: 32px;
-
     @include media-query($on-laptop) {
       font-size: 28px;
     }
@@ -357,7 +368,6 @@ hr { width:100%; height:1px; background: #fff }
 
   h3 {
     font-size: 26px;
-
     @include media-query($on-laptop) {
       font-size: 22px;
     }
@@ -365,10 +375,8 @@ hr { width:100%; height:1px; background: #fff }
 
   h4 {
     font-size: 20px;
-
     @include media-query($on-laptop) {
       font-size: 18px;
     }
   }
-
 }
