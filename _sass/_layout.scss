@@ -1,7 +1,4 @@
-@font-face {
-  font-family: title-font;
-  src: url("/css/Komoda.otf");
-}
+
 
 /**
  * Site header
@@ -27,7 +24,7 @@
   letter-spacing: -1px;
   float: left;
   color: #f5f5f5;
-  font-family: title-font;
+  font-family: $site-title-font-family;
 
   &,
   &:visited {
@@ -45,7 +42,7 @@
   }
 
   .page-link {
-    color: $text-color;
+    color: $background-color;
     line-height: $base-line-height;
 
     // Gaps between nav items, but not on the first one
@@ -273,6 +270,11 @@ hr { width:100%; height:1px; background: #fff }
   letter-spacing: -1px;
   line-height: 1;
 
+  h1{
+    font-weight: normal;
+    font-family: $headers-font-family;
+  }
+
   @include media-query($on-laptop) {
     font-size: 36px;
   }
@@ -281,23 +283,28 @@ hr { width:100%; height:1px; background: #fff }
 .post-content {
   h2 {
     font-size: 32px;
-
+    font-weight: bold;
+    margin-top: 35px;
+    font-family: $headers-font-family;
     @include media-query($on-laptop) {
       font-size: 28px;
     }
   }
 
   h3 {
-    font-size: 26px;
-
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 30px;
+    font-family: $headers-font-family;
     @include media-query($on-laptop) {
       font-size: 22px;
     }
   }
 
   h4 {
+    font-weight: bold;
     font-size: 20px;
-
+    font-family: $headers-font-family;
     @include media-query($on-laptop) {
       font-size: 18px;
     }
@@ -349,7 +356,7 @@ hr { width:100%; height:1px; background: #fff }
 }
 
 .app-list-item-inner {
-  padding-left: 2 5px;
+  padding-left: 25px;
   max-width: 100%;
   max-height: 100%;
   display: table-cell;
@@ -361,6 +368,7 @@ hr { width:100%; height:1px; background: #fff }
 
   h2 {
     font-size: 32px;
+    font-family: $headers-font-family;
     @include media-query($on-laptop) {
       font-size: 28px;
     }
@@ -368,6 +376,7 @@ hr { width:100%; height:1px; background: #fff }
 
   h3 {
     font-size: 26px;
+    font-family: $headers-font-family;
     @include media-query($on-laptop) {
       font-size: 22px;
     }
@@ -375,6 +384,7 @@ hr { width:100%; height:1px; background: #fff }
 
   h4 {
     font-size: 20px;
+    font-family: $headers-font-family;
     @include media-query($on-laptop) {
       font-size: 18px;
     }

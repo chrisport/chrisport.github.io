@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Observing properties in Java/Android"
+title:  "Model Binding for Android"
 date:   2014-09-08 20:50
 categories: "Android"
 author: Christoph Portmann
@@ -12,8 +12,8 @@ we had to implement a binding between the Model and the UI. During the developme
 but we ended up with something very similar to [Java Bean's PropertyChangeListener](http://developer.android.com/reference/java/beans/PropertyChangeListener.html).
 To find a better approach, I created a small setup consisting of a model "Profile" and a UI reflecting a profile's properties
 (such as name, age, followers). Inside this setup I implemented the different solutions and trialed them in a predefined
-set of tests.
-Unfortunately I didn't find time to finish a version with an Eventbus ([Ottobus](http://square.github.io/otto/))
+set of tests.  
+Unfortunately I didn't find time to finish a version with an Eventbus such as [Square's Ottobus](http://square.github.io/otto/)
 , I may add this in the future.
 
 ##Approaches
@@ -27,13 +27,14 @@ Unfortunately I didn't find time to finish a version with an Eventbus ([Ottobus]
 
 ### Project's solution
 Our own solution is very similar to PropertyChangeListener, a FieldObserver can directly bind to a FieldObservable Model's Field.
-FieldObserver and Field are generic and provide type-safety. 
+FieldObserver and Field are generic and provide type-safety.  
+Further it provides Thread-safety and updates the Observers directly on the UIThread which allows us to make updates from
+any thread.  
+The disadvantages are the huge boilerplate when creating a new model, as well as
+ the high complexity of the implementation. Therefore this implementation needs some serious refactoring, which will
+ probably never happen, since the app is not under active development anymore.
 
 [Code example on Gist](https://gist.github.com/chrisport/748ba6d5370f769e58b6)
-
-Type-safety is the big advantage of this solution. Further it provides Thread-safety and updates the 
-Observers directly on the UIThread. The disadvantages are the huge boilerplate when implementing a new model, as well as
- the high complexity of the implementation. Therefore this implementation needs clearly to be refactored.
 
 Let's take a look how we implement the Profile:
 {% highlight java %}
@@ -51,8 +52,7 @@ public interface Profile extends AbstractFieldsObservable {
     }
 }
 {% endhighlight %}
-As you can see, we were using an abstract class to inherit the common functions. As an excuse I can say we were young
-and inexperienced. Refactoring this to a component would make Profile implementation look like the next one, 
+As you can see, we were using an abstract class to inherit the common functions. Refactoring this to a component would make Profile implementation look like the next one, 
 PropertyChangeListener.
 
 ### PropertyChangeListener
@@ -146,7 +146,7 @@ Creation of a new Profile will in this case look as follow:
 profile = (ProfileP) PojoProxy.newInstance(new Class[]{ProfileP.class}, this);
 {%endhighlight%}
 
-To use Dynamic Proxy on Android the ClassLoader must be optained via a context: context.getClassLoader()
+**Note:** To use Dynamic Proxy on Android, the ClassLoader must be obtained via a context: context.getClassLoader()
 
 For more information see also ["Java Reflection - Dynamic Proxies" by Jakob Jenkov](http://tutorials.jenkov.com/java-reflection/dynamic-proxies.html)
 

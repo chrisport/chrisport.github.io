@@ -9,7 +9,7 @@ weight : 2
     <li>
         <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
         
-        <a class="post-meta-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         <p class="post-meta-bottom">
             <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;    {{ post.date | date: "%b %-d, %Y" }}
         </p>
