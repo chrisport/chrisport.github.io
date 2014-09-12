@@ -7,7 +7,7 @@ weight : 2
 <ul class="post-list">
     {% for post in site.posts %}
     <li>
-        <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
+        <!--<p class="post-meta-top">{{ post.categories[0] | upcase }}</p>-->
         
         <a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         <p class="post-meta-bottom">
