@@ -7,15 +7,12 @@ weight : 2
 <ul class="post-list">
     {% for post in site.posts %}
     <li>
-
         <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
         <a href="{{ post.url | prepend: site.baseurl }}" class="post-list-link">
             <p class="post-meta-title">{{ post.title }}</p>
         </a>
 
         <p class="post-meta-bottom">{{ post.content | strip_html | replace: '\n',' ' | truncate:350 ,"..." }}</p>
-
-
         <hr/>
     </li>
     {% endfor %}

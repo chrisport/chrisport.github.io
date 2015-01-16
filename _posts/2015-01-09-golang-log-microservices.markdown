@@ -21,7 +21,7 @@ to search for all entries by unique ID per request. But the possibilities to ana
 In this article I will talk about a solution to analyse the logs and create useful results and graphs. The examples are
 invented but reflect our experiences.
 
-**Request Trees**
+**Request Trees**   
 The [DOT graph description language](http://en.wikipedia.org/wiki/DOT_(graph_description_language)) is used to create
 graphs in plain text, which can be visualized using tools like [Graphviz](http://www.graphviz.org/).
 The language can be understood in few minutes which makes it easy to work with. Here an example
