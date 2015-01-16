@@ -3,19 +3,22 @@ layout: post
 title:  "Simple JSON in Golang"
 date:   2014-09-14 22:25
 categories: "Golang"
+github: https://github.com/chrisport/simplejson
 author: Christoph Portmann
 ---
-Simplejson is an imitation of Java's json-simple for go language. It is in Version 0.3 and its API will change slightly
-to allow a better error handling in the next version.
+Simplejson is an imitation of Java's json-simple for go language. It allows to access json-data without the overhead of
+predefining a model or casting elements manually. Therefore it is useful, whenever you want to get data from different schemas
+in a quick and clean way. It additionally provides a handy Error-handling, as well as segmented keys to directly access
+nested Objects and Arrays. Current Version is 0.3 and its API will change slightly to allow a better error handling in the next version.
 
-[Go to the Github repository](https://github.com/chrisport/simplejson)
+### Context
 
 While developing a configuration reader, I came across the problem: how to generically access data in a nested json-files in golang.
 Golang's native json-package provides methods to access data in json-format by unmarshaling into a predefined struct. 
 Therefore to handle various config-files, every project had to define it's own config-model that is used
 to unmarshall data and this was a pain.  
-If the type is not clear you are always free to parse it to a ```map[string]interface{}```, but it means you need to 
- cast the elements you access on this map (except they are all of same type, e.g. ```map[string]string```)
+If the type is not clear you are always free to parse it to a map[string] interface{}, but it means you need to 
+ cast the elements you access on this map (except they are all of same type, e.g. map[string] string)
 But when you have nested data, it gets a pain quickly, because in every step you need to cast the elements.  
 Let's look at an example.
 Json config file:
@@ -37,19 +40,19 @@ Json config file:
 }
 {% endhighlight %}
 
-### Native possibilities to access
+### Built-in possibilities to access
 To access the "path"-attribute of the first route, there is the first solution including casting:
 
 {% highlight go %}
 
 // defined the base map
-  var rootMap map[string] interface{}
+var rootMap map[string] interface{}
 // unmarshal data into map
-  json.Unmarshal(data, &rootMap)
+json.Unmarshal(data, &rootMap)
 // access and cast until desired data is retrieved
-  routes := rootMap["routes"].([]interface{})
-  firstRoute := routes[0].(map[string]interface{})
-  path := firstRoute["path"].(string)
+routes := rootMap["routes"].([]interface{})
+firstRoute := routes[0].(map[string]interface{})
+path := firstRoute["path"].(string)
 
 {% endhighlight %}
 
@@ -74,9 +77,9 @@ From Java I am familiar with json-simple, which allows you to access json-data l
 {% highlight java %}
 
 //parse to json
-  JSONObject rootObject = new JSONObject(data);
+JSONObject rootObject = new JSONObject(data);
 //get object
-  String pathOfFirstObject = object.getJSONArray("routes").getJSONObject(0).getString("path");
+String pathOfFirstObject = object.getJSONArray("routes").getJSONObject(0).getString("path");
 {% endhighlight %}
 
 
@@ -107,9 +110,12 @@ For this implementation you can do something similar::
 
 {% highlight go %}
 
-pathOfFirstObject, err := NewJSONObjectFromString(jsonString).JSONArray("routes").JSONObject(0).String("path")
+pathOfFirstObject, err := NewJSONObjectFromString(jsonString).
+                            JSONArray("routes").
+                            JSONObject(0).
+                            String("path")
 if err != nil {
-  fmt.Println("Gotcha! Message: " + err.Error() + ", when resolving Key: '" + err.Key() + "'")
+  fmt.Println("Gotcha! Message: " + err.Error())
 }
 {% endhighlight %}
 

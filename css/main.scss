@@ -2,19 +2,16 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
-@font-face {
-  font-family: title-font;
-  src: url("/fonts/Komoda.otf");
-}
+
 
 // Our variables
 $base-font-family: 'Open Sans', sans-serif;;//Helvetica, Arial, sans-serif;
-$headers-font-family: Helvetica, sans-serif;//Helvetica, Arial, sans-serif;
-$site-title-font-family:  title-font, sans-serif;//Helvetica, Arial, sans-serif;
+$headers-font-family: Ubuntu, sans-serif;//Helvetica, Arial, sans-serif;
+$site-title-font-family: 'Italiana', sans-serif;//Helvetica, Arial, sans-serif;
 $base-font-size:   15px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
-
+//'Lily Script One' |Noto Serif|Lobster|Fugaz One|Aladin|Cookie|Abril Fatface|Italiana|Bentham
 $spacing-unit:     30px;
 
 $text-color-dark-link: #5c5c80;

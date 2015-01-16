@@ -5,8 +5,11 @@ date:   2014-09-08 20:50
 categories: "Android"
 author: Christoph Portmann
 ---
+There are tons of approaches how to update UI when data changes or other way round, short Model binding. In this
+post we will investigate four possible implementations of a one-way binding and compare their performance in a series 
+of tests. Different code snippets provide an overview of the complexity when applying the approaches to a real example.
 
-##Introduction
+## Context
 While developing the Android Client for a platform that provides near-realtime experience for interactions between users,
 we had to implement a binding between the Model and the UI. During the development we created and evolved our own system,
 but we ended up with something very similar to [Java Bean's PropertyChangeListener](http://developer.android.com/reference/java/beans/PropertyChangeListener.html).
@@ -16,9 +19,9 @@ set of tests.
 Unfortunately I didn't find time to finish a version with an Eventbus such as [Square's Ottobus](http://square.github.io/otto/)
 , I may add this in the future.
 
-##Approaches
+## Approaches
 
-###Overview
+### Overview
 
 + Original: Project's implementation as-is
 + PropertyChangeListener: the java.beans solution + a modified version that notifies on UI-Thread

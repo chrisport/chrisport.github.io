@@ -4,12 +4,14 @@ layout: default
 <ul class="post-list">
     {% for post in site.posts %}
     <li>
-        <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
+        <a href="{{ post.url | prepend: site.baseurl }}"  class="post-list-link">
+            <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
 
-        <a class="post-meta-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        <p class="post-meta-bottom">
-            <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;    {{ post.date | date: "%b %-d, %Y" }}
-        </p>
+            <p class="post-meta-title">{{ post.title }}</p>
+
+            <p class="post-meta-bottom">{{ post.content | strip_html | replace: '\n',' ' | truncate:350 ,"..." }}</p>
+        </a>
+
         <hr/>
     </li>
     {% endfor %}
