@@ -106,13 +106,13 @@ logs are stored in a map or slice which can be iterated, sorted and filtered for
 
 ### Results of analysis
 
-Here are three example of results than can easily be produces with the parsed logs:
+Here are three examples of results than can easily be produces with the parsed logs:
 
 **1. Request tree and elapsed time**
 
 By changing the String() method, the desired information can easily be printed into dot notation.
 In this example I executed a request and printed elapsed time per service. This is sort of profiling on system level.
-The graphic shows which service take how much time in a clean way.
+The graphic shows which service takes how much time in a clean way.
 
 
 ![Visualization of request with elapsed time ](/images/ex2.png)
@@ -126,9 +126,10 @@ The graphic shows which service take how much time in a clean way.
 This graphic shows system wide calls. It is created over a certain time period and shows absolute numbers of total requests.
 Please note, one node is one service, not one running instance.
 We can make the following interpretations
-- Service A, C and H call other services through proxy. This is unnecessary and be corrected.
+
+- Service A, C and H call other services through proxy. This is unnecessary and should be corrected.
 - Service C calls itself, these calls should be refactored to method calls.
-- Service D is called by far most. This calls are very cheap and caused by a temporary solution. Therefore it can be ignored.
+- Service D is called most by far. This calls are very cheap and caused by a temporary solution. Therefore it can be ignored.
 - Service F is called directly, the system would be cleaner if we can redirect those calls through the proxy.
 
 **3. Outgoing requests per incoming requests**
