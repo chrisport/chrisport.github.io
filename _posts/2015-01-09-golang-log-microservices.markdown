@@ -1,18 +1,10 @@
 ---
 layout: post
-title:  "Logging call trees in a microservice architecture"
+title:  "Visualize call trees in a microservice architecture"
 date:   2015-01-12 10:00
 categories: "Golang"
 author: Christoph Portmann
 ---
-###Content
-
-- Introduction: Request trees in a Microservice system
-- Tracking request trees through chained IDs
-- Parse trees from log entries
-- Log analysis and interpretation
-
-### Introduction
 In a microservice architecture, the distribution of functionality leads also to distribution of logs.
 One client request can cause multiple internal requests, which again can cause requests.
 This can lead to unwanted depth of requests which leads to high latency.
@@ -21,7 +13,7 @@ to search for all entries by unique ID per request. But the possibilities to ana
 In this article I will talk about a solution to analyse the logs and create useful results and graphs. The examples are
 invented but reflect our experiences.
 
-**Request Trees**   
+### Request Trees
 The [DOT graph description language](http://en.wikipedia.org/wiki/DOT_(graph_description_language)) is used to create
 graphs in plain text, which can be visualized using tools like [Graphviz](http://www.graphviz.org/).
 The language can be understood in few minutes which makes it easy to work with. Here an example
@@ -59,6 +51,8 @@ UserService     UID::BillServiceID::UserServiceID
 BankGateaway    UID::BillServiceID::BankGateawayID
 AuditService    UID::BankGateawayID::AuditServiceID
 {% endhighlight %}
+
+![Visualization of request with elapsed time ](/images/ex2-5.png)
 
 The go function to create this IDs is simple as
 
@@ -120,13 +114,12 @@ By changing the String() method, the desired information can easily be printed i
 In this example I executed a request and printed elapsed time per service. This is sort of profiling on system level.
 The graphic shows which service take how much time in a clean way.
 
-Example:
+
 ![Visualization of request with elapsed time ](/images/ex2.png)
 (numbers do not represent real environment times)
 
 **2. Request number between services**
 
-Example:
 
 ![Visualization of total requests between services](/images/ex3.png)
 
