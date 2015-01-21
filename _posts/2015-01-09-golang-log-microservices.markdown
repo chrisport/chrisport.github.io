@@ -148,7 +148,3 @@ This ratio can show some flaw in the services. Some may have a high number becau
 aggregate data from other services, but they should be investigated. Also it can be seen that Proxy is almost but not
 exactly 1. This 0.0013 difference are invalid requests which the proxy couldn't resolve and responded with "service not found".
 A similar statistic can be made per endpoint.
-
-#### Disclaimer
-The data and examples are made in an artificial environment. The described methodology is applied to the real system and the example
-graphs resembles real situations.
