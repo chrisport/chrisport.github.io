@@ -44,7 +44,7 @@
   }
 
   .page-link {
-    color: $background-color;
+    color: WHITE;
     line-height: $base-line-height;
     font-size: $base-font-size*1.62;
 
@@ -251,9 +251,9 @@
 }
 
 .post-meta-title {
-  font-size: 42px;
+  font-size: 26px;
   letter-spacing: -1px;
-  line-height: 45px;
+  line-height: 25px;
   color: $text-color-dark;
 }
 
@@ -282,7 +282,7 @@ hr {
 }
 
 .post-title {
-  font-size: 42px;
+  font-size: 32px;
   letter-spacing: -1px;
   line-height: 1;
 
