@@ -3,7 +3,7 @@ title: Rooster - Turkish Trainer
 author: Florya
 date:   2014-09-01 19:34:00
 weight: 2
-playlink: https://play.google.com/store/apps/details?id=com.florya.kelime
+link: https://play.google.com/store/apps/details?id=com.florya.kelime
 image: https://lh5.ggpht.com/fLUhoB4rG-WURVdEq6P3dBf2IvkjYVB4dqA5s0V6rv931F77R_rwRLJYnYv5Fsylm4fO=w150-rw
 ---
-Rooster boosts your Turkish vocabulary through a steady and painless learning!
+The Android application Rooster boosts your Turkish vocabulary through a steady and painless learning!
