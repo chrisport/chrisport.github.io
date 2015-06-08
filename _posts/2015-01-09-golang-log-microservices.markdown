@@ -5,12 +5,13 @@ date:   2015-01-12 10:00
 categories: "Golang"
 author: Christoph Portmann
 ---
-In a microservice architecture, the distribution of functionality leads also to distribution of logs.
+In a microservice architecture, one request can lead to multiple log entries 
+distributed across services.
 One client request can cause multiple internal requests, which again can cause requests.
 This can lead to unwanted depth of requests which leads to high latency.
 I worked in a system with central logging using the ELK stack. It was easy to search for log entries and even
 to search for all entries by unique ID per request. But the possibilities to analyse request trees were very limited.
-In this article I will talk about a solution to analyse the logs and create useful results and graphs. The examples are
+In this article I will show a solution to analyse the logs and create useful results and graphs. The examples are
 invented but reflect our experiences.
 
 ### Request Trees
