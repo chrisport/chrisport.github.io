@@ -5,7 +5,7 @@ permalink: /projects/
 ---
 <ul class="project-list">
 {% assign sorted_pages = site.projects | sort:site.projects.weight %}
-{% for project in sorted_pages %}
+{% for project in sorted_pages reversed %}
 <li class="project-list-item">
   <div class="project-list-item-inner project-logo">
     <a href="{{project.link}}" target="_blank">
