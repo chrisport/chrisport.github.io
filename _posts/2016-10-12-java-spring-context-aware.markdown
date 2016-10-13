@@ -1,39 +1,32 @@
 ---
 layout: post
 title:  "Context Aware Java Executor and Spring's @Async"
-date:   2016-10-12 11:00
-categories: "Java","Spring"
+date:   2016-10-13 11:00
+categories: "Java"
 github: https://github.com/chrisport/thread-context-demo
 author: Christoph Portmann
 ---
-Recently I came across the problem of ThreadLocal Context in multithreaded environment, in this case when using Java's 
-Executor interface with an underlying ThreadPool.   
-The problem arises if the Thread that handled the request uses an Executor to asynchronously execute tasks. These may
-be executed on any other Thread from a pool or by a newly created Thread. Any ThreadLocal/MDC of the handling Thread is
-lost in this case and therefore information such as requestId is not present in the logs.   
-I will solve this issue in 2 steps, using Decorator pattern:
-1. Wrap the Runnable in order to pass a copy of the ThreadLocal context into the execution
-2. Implement custom Executor that decorates every task using above wrapping
+Recently I came across the problem of ThreadLocal context in multithreaded environment.
+If the Thread that handled a request uses an [Executor](https://docs.oracle.com/javase/tutorial/essential/concurrency/exinter.html) 
+to asynchronously execute tasks, the ThreadLocal context is lost and information such as requestId will be be missing in the logs.    
+We can solve this using the Decorator pattern:   
 
-Additionally I will configure my Spring Boot environment to automatically use this Executor when wrapping methods that are
-annotated with @Async.
+1. Wrap Runnable to preserve caller Thread's context
+2. Implement ExecutorDecorator that wraps every execution  
+3. Additional: Configure Spring's @Async to use Decorator 
 
-In the following example I will use 
-[*MDC*(Mapped Diagnostic Context)](http://www.slf4j.org/api/org/slf4j/MDC.html) from the package org.slf4j as the ThreadLocal Context. 
-MDC can be used to store information in a ThreadLocal, particularly for additional logging information. 
-For example request information, such as requestId can be put to MDC in order to be present on every log-message.
+Please note:   
+- [*MDC* (Mapped Diagnostic Context)](http://www.slf4j.org/api/org/slf4j/MDC.html) used in the example as the ThreadLocal context      
+- *caller Thread*, which wants to schedule some task   
+- *executor Thread*, which can be any Thread (e.g. from a pool) that executes the task   
 
-*Important:* Please note the difference between the *caller Thread*, which wants to schedule some task, 
-and the *executor Thread*, which can be any Thread (e.g. from a pool) that executes the task.
+### 1. Make the runnable context aware
 
-### Make the runnable context aware
+To pass the MDC of the caller Thread to the Executor thred, we get a copy of the ContextMap.  
+Then we set this context map before execution of the task and reset it after the execution.      
 
-To pass the ThreadLocal context of the caller-Thread inside the task, we will first take a copy of it. 
-Then we set this copy as executor-Thread's context before execution of the task and reset it after the execution. 
-The result is simply another Runnable which can be executed by anybody, while MDC is ensured.   
-So here's the code:
-
-```
+{% highlight java %}
+ 
 // get a copy of the values of calling Thread's MDC
 final Map<String, String> callerContextCopy = MDC.getCopyOfContextMap();
 
@@ -56,13 +49,15 @@ Runnable ctxAwareTask = () -> {
     MDC.setContextMap(executorContextCopy);
   }
 };
-```
 
-### Implement custom Executor that decorates every task
+{% endhighlight %}
 
-There is not much to explain, here is the implementation.
 
-``` 
+### 2. Implement custom Executor that decorates every task
+
+
+{% highlight java %}
+  
 public class ContextAwareExecutorDecorator implements Executor, TaskExecutor {
 
     private final Executor executor;
@@ -73,7 +68,9 @@ public class ContextAwareExecutorDecorator implements Executor, TaskExecutor {
 
     @Override
     public void execute(Runnable command) {
+        // decorate the task
         Runnable ctxAwareCommand = wrapContextAware(command);
+        // execute the decorated task
         executor.execute(ctxAwareCommand);
     }
 
@@ -83,16 +80,19 @@ public class ContextAwareExecutorDecorator implements Executor, TaskExecutor {
         return ctxAwareTask;
     }
 }
-```
+
+{% endhighlight %}
+
 
 Please note that I also implement Spring's TaskExecutor for usage below.
 
-### Addition: Configure Spring's @Async to use Decorator
+### 3. Addition: Configure Spring's @Async to use Decorator
+ 
+We can configure the default executor easily with the following Configuration.
+See also [Spring's documentation: EnableAsync](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/EnableAsync.html).
 
-Following [Spring's documentation: EnableAsync](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/EnableAsync.html), 
-we can configure the default executor easily with the following Configuration:
+{% highlight java %}
 
-```
 @Configuration
 @EnableAsync
 public class AppConfig implements AsyncConfigurer {
@@ -114,5 +114,6 @@ public class AppConfig implements AsyncConfigurer {
         return new SimpleAsyncUncaughtExceptionHandler();
     }
 }
-```
+
+{% endhighlight %}
 
