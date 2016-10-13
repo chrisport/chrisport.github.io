@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Context Aware Java Executor and Spring's @Async"
-date:   2016-10-13 11:00
+date:   11:00
 categories: "Java"
 github: https://github.com/chrisport/thread-context-demo
 author: Christoph Portmann
@@ -22,7 +22,7 @@ Please note:
 
 ### 1. Make the runnable context aware
 
-To pass the MDC of the caller Thread to the Executor thred, we get a copy of the ContextMap.  
+To pass the MDC of the caller Thread to the executor Thread, we get a copy of the ContextMap.  
 Then we set this context map before execution of the task and reset it after the execution.      
 
 {% highlight java %}
@@ -95,7 +95,7 @@ See also [Spring's documentation: EnableAsync](http://docs.spring.io/spring/docs
 
 @Configuration
 @EnableAsync
-public class AppConfig implements AsyncConfigurer {
+public class AppConfig extends AsyncConfigurerSupport {
 
     @Override
     public Executor getAsyncExecutor() {
@@ -107,13 +107,38 @@ public class AppConfig implements AsyncConfigurer {
         executor.initialize();
         return new ContextAwareExecutorDecorator(executor);
     }
-
-    @Override
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        // TBD
-        return new SimpleAsyncUncaughtExceptionHandler();
-    }
+    
 }
 
 {% endhighlight %}
 
+### Sample Application
+
+There is a small [sample application](https://github.com/chrisport/thread-context-demo) on Github. It has a service, which
+has an @Async method. After startup, the service is called 10 times with a specific MDC context containing the loop-count and
+the caller's threadId. The asynchronous service method prints its MDC to the log, which should contain the original mentioned properties.   
+The resulting log looks like this:
+
+{% highlight java %}
+13:07:50.634 executorThreadId: 17; ContextMap on execution: {count=0, callerThreadId=16}
+13:07:50.737 executorThreadId: 18; ContextMap on execution: {count=1, callerThreadId=16}
+13:07:50.839 executorThreadId: 19; ContextMap on execution: {count=2, callerThreadId=16}
+13:07:50.943 executorThreadId: 20; ContextMap on execution: {count=3, callerThreadId=16}
+13:07:51.045 executorThreadId: 21; ContextMap on execution: {count=4, callerThreadId=16}
+13:07:51.149 executorThreadId: 23; ContextMap on execution: {count=5, callerThreadId=16}
+13:07:51.254 executorThreadId: 24; ContextMap on execution: {count=6, callerThreadId=16}
+13:07:51.359 executorThreadId: 17; ContextMap on execution: {count=7, callerThreadId=16}
+13:07:51.462 executorThreadId: 18; ContextMap on execution: {count=8, callerThreadId=16}
+13:07:51.565 executorThreadId: 19; ContextMap on execution: {count=9, callerThreadId=16}
+{% endhighlight %}
+
+
+If we remove our ContextAwareExecutorDecorator from the executor, we will encounter the initially described problem: the ThreadLocal context gets lost.   
+In that case the log looks like this:   
+
+{% highlight java %}
+13:14:20.643 executorThreadId: 17; ContextMap on execution: null
+13:14:20.748 executorThreadId: 18; ContextMap on execution: null
+13:14:20.852 executorThreadId: 19; ContextMap on execution: null
+...
+{% endhighlight %}
