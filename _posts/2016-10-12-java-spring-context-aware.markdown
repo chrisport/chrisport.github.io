@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Context Aware Java Executor and Spring's @Async"
-date:   11:00
+date:   2016-10-12
 categories: "Java"
 github: https://github.com/chrisport/thread-context-demo
 author: Christoph Portmann
