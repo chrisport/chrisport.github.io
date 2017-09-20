@@ -8,7 +8,7 @@ weight : 2
     {% for post in site.posts %}
     <li>
         <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
-        <a href="{{ post.url | prepend: site.baseurl }}" class="post-list-link">
+        <a href="{{ post.url | prepend: site.baseurl }}" class="post-list-link">{{ page.date | date: "%b %-d, %Y" }}
             <p class="post-meta-title">{{ post.title }}</p>
         </a>
 
