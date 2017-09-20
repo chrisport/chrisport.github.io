@@ -47,7 +47,7 @@ main.main()
 exit status 2
 {% endhighlight %}
 
-By wrapping the error, we can save time:
+By wrapping the error, we can provide the missing information about what part failed:
 {% highlight go %}
 func main() {
 	err := process([]byte("some_invalid_input"))
@@ -85,7 +85,7 @@ exit status 2
 In this simple example the advantage is not crystal clear. But imagine serviceA is doing a complex task itself and doesn't wrap it's error as well.   
 You could end up getting generic errors (e.g. a timeout on an http call) and need to debug down the whole stack to find out which
 call has failed. But if errors are always wrapped with necessary context, an error message could look as nice as this:   
-{% highlight %}
+{% highlight go %}
 panic: calling service B with provided input failed: call to backend failed: http: wrote more than the declared Content-Length
 {% endhighlight %}
    
