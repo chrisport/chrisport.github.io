@@ -2,7 +2,7 @@
 title: Mittim Effretikon Augmented Reality
 author: Christoph Portmann
 date:   2013-08-26 00:00
-weight: 1
+weight: 0
 link: https://www.youtube.com/watch?v=qbL17CG0N28
 image: /images/bt_logo.jpg
 ---

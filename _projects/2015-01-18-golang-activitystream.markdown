@@ -2,7 +2,7 @@
 title: Activitystream library Golang & Redis
 author: Christoph Portmann
 date:   2015-01-20 00:00
-weight: 2
+weight: 0
 link: http://github.com/chrisport/go-activitystream
 image: /images/go.png
 ---
