@@ -1,0 +1,10 @@
+---
+title: Quotes / Vue.JS playground
+author: Christoph Portmann
+date:   2017-08-20 00:00
+weight: 0
+link: http://quotes.chrisport.ch
+image: /images/quotes.png
+---
+Small website in Vue.JS that shows a list of quotes with filter and deep link functionality. Future work: small backend and
+commenting functionality on quotes.
