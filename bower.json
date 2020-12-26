@@ -22,8 +22,7 @@
     "test-infra"
   ],
   "dependencies": {
-    "bootstrap": "3.2",
-    "fontawesome": "4.1.0",
-    "jquery": ">= 1.9.0"
+    "bootstrap": "5.0.0.beta1",
+    "fontawesome": "4.7.0"
   }
 }
