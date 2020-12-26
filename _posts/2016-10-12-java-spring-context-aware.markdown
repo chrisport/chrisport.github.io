@@ -16,7 +16,7 @@ We can solve this using the Decorator pattern:
 3. Additional: Configure Spring's @Async to use Decorator 
 
 Please note:   
-- [*MDC* (Mapped Diagnostic Context)](http://www.slf4j.org/api/org/slf4j/MDC.html) used in the example as the ThreadLocal context      
+- [*MDC* (Mapped Diagnostic Context)](https://www.slf4j.org/api/org/slf4j/MDC.html) used in the example as the ThreadLocal context      
 - *caller Thread*, which wants to schedule some task   
 - *executor Thread*, which can be any Thread (e.g. from a pool) that executes the task   
 
@@ -89,7 +89,7 @@ Please note that I also implement Spring's TaskExecutor for usage below.
 ### 3. Addition: Configure Spring's @Async to use Decorator
  
 We can configure the default executor easily with the following Configuration.
-See also [Spring's documentation: EnableAsync](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/EnableAsync.html).
+See also [Spring's documentation: EnableAsync](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/EnableAsync.html).
 
 {% highlight java %}
 

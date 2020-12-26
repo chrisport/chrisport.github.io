@@ -1,7 +1,7 @@
 # Site settings
 title:
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://chrisport.github.io" # the base hostname & protocol for your site
+url: "https://chrisport.github.io" # the base hostname & protocol for your site
 collections:
   projects:
     output: true

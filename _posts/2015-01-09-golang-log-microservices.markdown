@@ -15,8 +15,8 @@ In this article I will show a solution to analyse the logs and create useful res
 invented but reflect our experiences.
 
 ### Request Trees
-The [DOT graph description language](http://en.wikipedia.org/wiki/DOT_(graph_description_language)) is used to create
-graphs in plain text, which can be visualized using tools like [Graphviz](http://www.graphviz.org/).
+The [DOT graph description language](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) is used to create
+graphs in plain text, which can be visualized using tools like [Graphviz](https://www.graphviz.org/).
 The language can be understood in few minutes which makes it easy to work with. Here an example
 {% highlight go %}
     digraph "/pay" {
@@ -69,7 +69,7 @@ func transformUniqueId(parentUID string) string {
 }
 {% endhighlight %}
 
-Since we use a [beego filter](http://beego.me/docs/mvc/controller/filter.md) to write the access logs, it is very easy
+Since we use a [beego filter](https://beego.me/docs/mvc/controller/filter.md) to write the access logs, it is very easy
 to apply this to every incoming request. Parallel benchmarking shows that the additional cost of this is in range
 of 600-800 nanoseconds, including decomposition of the received ID, generation of the new ID and storing the result
 in the request context. The resulting ID will be sent in the header of every consecutive request to other services.

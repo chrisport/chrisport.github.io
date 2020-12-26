@@ -27,7 +27,7 @@ Json config file:
     "routes": [
         {
             "path": "profile/id/:id",
-            "url": "http://api.eventmanager.com/events",
+            "url": "https://api.eventmanager.com/events",
             "method": "GET"
         },
         {

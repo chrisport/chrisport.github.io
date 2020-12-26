@@ -12,11 +12,11 @@ of tests. Different code snippets provide an overview of the complexity when app
 ## Context
 While developing the Android Client for a platform that provides near-realtime experience for interactions between users,
 we had to implement a binding between the Model and the UI. During the development we created and evolved our own system,
-but we ended up with something very similar to [Java Bean's PropertyChangeListener](http://developer.android.com/reference/java/beans/PropertyChangeListener.html).
+but we ended up with something very similar to [Java Bean's PropertyChangeListener](https://developer.android.com/reference/java/beans/PropertyChangeListener.html).
 To find a better approach, I created a small setup consisting of a model "Profile" and a UI reflecting a profile's properties
 (such as name, age, followers). Inside this setup I implemented the different solutions and trialed them in a predefined
 set of tests.  
-Unfortunately I didn't find time to finish a version with an Eventbus such as [Square's Ottobus](http://square.github.io/otto/)
+Unfortunately I didn't find time to finish a version with an Eventbus such as [Square's Ottobus](https://square.github.io/otto/)
 , I may add this in the future.
 
 ## Approaches
@@ -151,7 +151,7 @@ profile = (ProfileP) PojoProxy.newInstance(new Class[]{ProfileP.class}, this);
 
 **Note:** To use Dynamic Proxy on Android, the ClassLoader must be obtained via a context: context.getClassLoader()
 
-For more information see also ["Java Reflection - Dynamic Proxies" by Jakob Jenkov](http://tutorials.jenkov.com/java-reflection/dynamic-proxies.html)
+For more information see also ["Java Reflection - Dynamic Proxies" by Jakob Jenkov](https://tutorials.jenkov.com/java-reflection/dynamic-proxies.html)
 
 ## Comparison
 
