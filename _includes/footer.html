@@ -3,28 +3,28 @@
     <div class="wrapper">
         {% for member in site.data.members %}
         {% if member.stackoverflow_username %}
-          <span class="social-media-logo">
+        <span class="social-media-logo">
             <a href="http://stackoverflow.com/users/3210551/chrisport" target="_blank">
                 <i class="fa fa-stack-overflow fa-2x"></i>
             </a>
           </span>
         {% endif %}
         {% if member.linkedin_username %}
-          <span class="social-media-logo">
+        <span class="social-media-logo">
               <a href="http://tr.linkedin.com/in/{{ member.linkedin_username }}" target="_blank">
                   <i class="fa fa-linkedin-square fa-2x"></i>
               </a>
           </span>
         {% endif %}
         {% if member.github_username %}
-          <span class="social-media-logo">
+        <span class="social-media-logo">
               <a href="https://github.com/{{ member.github_username }}" target="_blank">
                   <i class="fa fa-github fa-2x"></i>
               </a>
           </span>
         {% endif %}
         {% if member.twitter_username %}
-          <span class="social-media-logo">
+        <span class="social-media-logo">
               <a href="https://twitter.com/{{ member.twitter_username }}" target="_blank">
                   <i class="fa fa-twitter fa-2x"></i>
               </a>
@@ -36,14 +36,7 @@
 
     </div>
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-54743751-1', 'auto');
-        ga('send', 'pageview');
-
+      console.log("If you're looking for cookies, there are no cookies here.");
     </script>
 </footer>
 
