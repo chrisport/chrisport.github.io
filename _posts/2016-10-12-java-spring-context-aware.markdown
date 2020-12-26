@@ -5,6 +5,7 @@ date:   2016-10-12
 categories: "Java"
 github: https://github.com/chrisport/thread-context-demo
 author: Christoph Portmann
+status: "released"
 ---
 Recently I came across the problem of ThreadLocal context in multithreaded environment.
 If the Thread that handled a request uses an [Executor](https://docs.oracle.com/javase/tutorial/essential/concurrency/exinter.html) 

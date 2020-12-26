@@ -2,14 +2,20 @@
 layout: default
 ---
 <div class="post">
+    {% if page.status == "draft" %}
+    <div class="disclaimer">
+        <h1>[Draft]</h1>
+        This post is not public.
+    </div>
+    {% endif %}
+    <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <p class="post-meta-bottom">{{ page.date | date: "%b %-d, %Y" }}{% if page.categories %} • {{ page.categories[0]
+            | upcase}}{% endif %}{% if page.github %} • <a href="{{ page.github }}">On Github</a>{% endif %}</p>
+    </header>
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta-bottom">{{ page.date | date: "%b %-d, %Y" }}{% if page.categories %} • {{ page.categories[0] | upcase}}{% endif %}{% if page.github %} • <a href="{{ page.github }}">On Github</a>{% endif %}</p>
-  </header>
-
-  <article class="post-content">
-    {{ content }}
-  </article>
+    <article class="post-content">
+        {{ content }}
+    </article>
 
 </div>

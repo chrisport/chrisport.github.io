@@ -4,6 +4,7 @@ title:  "Bubble up errors in Golang"
 date:   2017-09-20
 categories: "Golang"
 author: Christoph Portmann
+status: "released"
 ---
 <Draft>
 One problem I often encounter, are errors without any context.

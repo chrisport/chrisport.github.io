@@ -5,7 +5,8 @@ permalink: /posts/
 weight : 2
 ---
 <ul class="post-list">
-    {% for post in site.posts %}
+    {% assign filtered_posts = site.posts | where:'status','released' %}
+    {% for post in filtered_posts %}
     <li>
         <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
         <a class="post-list-link" href="{{ post.url | prepend: site.baseurl }}" rel="noreferrer">{{ page.date | date:

@@ -277,6 +277,13 @@ hr {
 /**
  * Posts
  */
+.disclaimer {
+  padding: 1em;
+  margin-bottom: $spacing-unit;
+  background: #fde9e9;
+  border-style: dashed;
+}
+
 .post-header {
   margin-bottom: $spacing-unit;
 }

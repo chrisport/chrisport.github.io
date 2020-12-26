@@ -4,6 +4,7 @@ title:  "Model Binding for Android"
 date:   2014-09-08 20:50
 categories: "Android"
 author: Christoph Portmann
+status: "released"
 ---
 There are tons of approaches how to update UI when data changes or other way round, short Model binding. In this
 post we will investigate four possible implementations of a one-way binding and compare their performance in a series 

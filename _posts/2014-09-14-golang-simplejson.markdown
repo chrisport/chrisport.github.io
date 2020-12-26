@@ -5,6 +5,7 @@ date:   2014-09-14 22:25
 categories: "Golang"
 github: https://github.com/chrisport/simplejson
 author: Christoph Portmann
+status: "released"
 ---
 Simplejson is an imitation of Java's json-simple for go language. It allows to access json-data without the overhead of
 predefining a model or casting elements manually. Therefore it is useful, whenever you want to get data from different schemas

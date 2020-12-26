@@ -4,7 +4,11 @@ title:  "Visualize call trees in a microservice architecture"
 date:   2015-01-12 10:00
 categories: "Golang"
 author: Christoph Portmann
+status: "released"
 ---
+
+*Disclaimer 2020: Distributed tracing is provided by various libraries (like Sleuth). Please consider existing, battle-proof libraries before implementing something yourself.*
+
 In a microservice architecture, one request can lead to multiple log entries 
 distributed across services.
 One client request can cause multiple internal requests, which again can cause requests.
