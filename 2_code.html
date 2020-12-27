@@ -1,0 +1,23 @@
+---
+layout: default
+title: Code
+permalink: /code/
+weight : 1
+---
+<ul class="code-list">
+    {% assign sorted_pages = site.code | sort:site.code.weight %}
+    {% for code in sorted_pages reversed %}
+    <li class="code-list-item">
+        <div class="code-list-item-inner code-logo">
+            <a href="{{code.link}}" target="_blank">
+                <img alt="code" src="{{code.image}}">
+            </a>
+        </div>
+
+        <div class="code-list-item-inner">
+            <b><a href="{{code.link}}" target="_blank">{{code.title}} ({{code.year}}})</a></b>
+            {{ code.content }}
+        </div>
+    </li>
+    {% endfor %}
+</ul>

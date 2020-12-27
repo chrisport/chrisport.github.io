@@ -2,6 +2,7 @@
 title: (Human) Language detection in Golang
 author: Christoph Portmann
 date:   2017-08-21 00:00
+year: 2015
 weight: 0
 link: https://github.com/chrisport/go-lang-detector
 image: /images/go.png

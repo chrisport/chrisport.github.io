@@ -1,9 +1,9 @@
 # Site settings
-title:
+title: chrisport.ch
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://chrisport.github.io" # the base hostname & protocol for your site
 collections:
-  projects:
+  code:
     output: true
 # Build settings
 markdown: kramdown

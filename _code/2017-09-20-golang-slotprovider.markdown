@@ -2,6 +2,7 @@
 title: Slotprovider Performance experiment
 author: Christoph Portmann
 date:   2017-08-20 00:00
+year: 2017
 weight: 0
 link: https://github.com/chrisport/slotprovider
 image: /images/go.png
