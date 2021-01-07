@@ -4,7 +4,7 @@ title:  "Bringing vision into a code base"
 date:   2020-12-26
 categories: "software-engineering"
 author: Christoph Portmann
-status: "draft"
+status: "released"
 ---
 
 This post is about how to inject and persist architectural vision in a code base, based on a recent experience. 
@@ -97,7 +97,7 @@ The document should be short enough for anybody to read it in just *five minutes
    Where possible, move such things to ArchUnit tests, where they are much more practical.
 
 3. **Continuous guided change with pre-commit hooks**   
-On a similar line as the ArchUnit tests, we've introduced a git pre-commit hook (using [husky](https://github.com/typicode/husky)), which runs through the touched files and verifies that certain things are not present anymore. This supports a continuous refactoring approach to things like renaming or change of tool, in the sense of a fitness function<sup>6</sup>.   
+On a similar line as the ArchUnit tests, we've introduced a git pre-commit hook (using [husky](https://github.com/typicode/husky)), which runs through the touched files and verifies that certain things are not present anymore. This supports a continuous refactoring approach to things like renaming or change of tool, in the sense of a fitness function<sup>5</sup>.   
 For example whenever you have touched a test, all junit4 tests should be junit5 now and the name 'OutputView' should not appear anymore in any variable name, but be replaced with 'View'.   
 Scanning through the file of a commit, the script searches for appearances of unwanted content and prints the violation to the console. Each violation has an explaining comment which is printed along-side. 
 > Violation: File Application.test.kt contains org.junit.test. Please migrate Junit4 tests to Junit5.
