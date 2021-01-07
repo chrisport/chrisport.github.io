@@ -1,6 +1,35 @@
 <header class="site-header">
+    <script>
+      // anonymous usage of Google Analytics (no unique visitors identifiable)
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      function randomClientId() {
+        // https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      ga('create', 'UA-54743751-2',
+        // no cookie for you!
+        {'storage': 'none',
+        'clientId': randomClientId()}
+      );
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+
+    </script>
     <div class="wrapper">
-        <!-- <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>-->
         <nav class="site-nav">
             <a href="#" class="menu-icon">
                 <svg viewBox="0 0 18 15">
