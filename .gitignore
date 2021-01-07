@@ -3,3 +3,5 @@ _site
 .idea/
 */.idea
 .sass-cache
+.jekyll-cache
+**/.DS_STORE
