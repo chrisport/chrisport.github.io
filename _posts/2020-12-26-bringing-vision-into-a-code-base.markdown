@@ -2,7 +2,7 @@
 layout: post
 title:  "Bringing vision into a code base"
 date:   2020-12-26
-categories: "architectural-vision"
+categories: "software-engineering"
 author: Christoph Portmann
 status: "draft"
 ---
@@ -121,7 +121,7 @@ We also looked at a three tools that supports continuation of a unified vision, 
 
 ## References <a name="references"></a>
 <sup>1</sup> In her book [Dynamic Reteaming](https://www.amazon.com/Dynamic-Reteaming-Wisdom-Changing-Teams/dp/1733567216), Heidi Helfand calls this approach of building a new team around a specific problem [Isolation Pattern](https://www.pluralsight.com/blog/teams/heidi-helfand-s-five-patterns-for-responsible-reteaming).   
-<sup>2</sup> Eventstorming is an approach to discover the domain together in form of a workshop. We used [Mural](http://www.mural.co) to do this remotely.   
+<sup>2</sup> Eventstorming is an approach to discover the domain in form of a workshop. We used [Mural](http://www.mural.co) to do this remotely.   
 <sup>3</sup> If you know who the origin of this analogy, please let me know.   
 <sup>4</sup> See also [https://www.solutionsiq.com/learning/blog-post/lines-of-communication](https://www.solutionsiq.com/learning/blog-post/lines-of-communication)   
 <sup>5</sup> A Fitness Functions as described in the book [Building Evolutionary Architecture](https://www.thoughtworks.com/books/building-evolutionary-architectures) produces a statement, which tells us if we move forward in the direction of a desired achitectural characteristic.   
