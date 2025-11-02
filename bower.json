@@ -22,7 +22,7 @@
     "test-infra"
   ],
   "dependencies": {
-    "bootstrap": "5.0.0.beta1",
+    "bootstrap": "5.3.8",
     "fontawesome": "4.7.0"
   }
 }

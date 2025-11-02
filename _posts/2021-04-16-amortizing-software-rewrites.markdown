@@ -7,6 +7,6 @@ author: Christoph Portmann & Ashish Tyagi
 status: "released"
 ---
 
-This post I have written and published with a colleague during my time at Thoughtworks,
-[https://www.thoughtworks.com/en-de/insights/blog/amortizing-software-rewrites-evolutionary-approach](https://www.thoughtworks.com/en-de/insights/blog/amortizing-software-rewrites-evolutionary-approach)
+This post I have written and published with a colleague during my time at Thoughtworks.
+Please find it here: [thoughtworks.com/en-de/insights/blog/amortizing-software-rewrites-evolutionary-approach](https://www.thoughtworks.com/en-de/insights/blog/amortizing-software-rewrites-evolutionary-approach)
 
