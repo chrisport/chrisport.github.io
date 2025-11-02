@@ -4,7 +4,11 @@ title: Posts
 permalink: /posts/
 weight : 2
 ---
+<p>
+    Here are a couple of posts I've written in the past.
+</p>
 <ul class="post-list">
+
     {% assign filtered_posts = site.posts | where:'status','released' %}
     {% for post in filtered_posts %}
     <li>
