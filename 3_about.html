@@ -9,9 +9,10 @@ weight : 1
     <div class="footer-col  footer-col-1">
         <b><p class="about">{{ member.name }}</p></b>
         <p class="about-description">{{ member.description }}</p>
-
+        <p> I'm a passionate developer and tech lead with 10+ years of experience in delivering scalable, high-performance systems.</p>
+        <p>Leading diverse, and even cross-continental teams has reinforced my belief that combining technical excellence with inclusive and safe culture drives both individual growth and business success. I focus on outcomes over output, creating transparency and alignment that enables teams to autonomously make technical decisions and deliver measurable business value.</p>
     </div>
-    <div class="footer-col  footer-col-2">
+    <div class="footer-col  footer-col-3">
         <ul class="social-media-list">
             {% if member.github_username %}
             <li>
@@ -21,11 +22,6 @@ weight : 1
                 </a>
             </li>
             {% endif %}
-
-        </ul>
-    </div>
-    <div class="footer-col  footer-col-3">
-        <ul class="social-media-list">
             {% if member.linkedin_username %}
             <li>
                 <a href="https://linkedin.com/in/{{ member.linkedin_username }}" rel="noreferrer" target="_blank">
