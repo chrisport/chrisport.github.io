@@ -7,4 +7,5 @@ weight: 0
 link: https://github.com/chrisport/chrome-link-guardian
 image: https://github.com/chrisport/chrome-link-guardian/blob/main/img/settings.jpeg
 ---
-Chrome Plugin that will warn you before opening unverified link destinations to protects you from phishing attacks and malware.
+Chrome Plugin that will warn you before opening unverified link destinations from Gmail.
+This reduce the likelihood of successful phishing attacks or downloading malware.
