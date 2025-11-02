@@ -15,7 +15,7 @@ weight : 2
         <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
         <a class="post-list-link" href="{{ post.url | prepend: site.baseurl }}" rel="noreferrer">{{ page.date | date:
             "%b %-d, %Y" }}
-            <p class="post-meta-title">{{ post.title }}</p>
+            <p class="post-meta-title">{{ post.title }}</p>{{ post.year }}
         </a>
 
         <p class="post-meta-bottom">{{ post.content | strip_html | replace: '\n',' ' | truncate:350 ,"..." }}</p>
