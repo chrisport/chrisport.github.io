@@ -1,20 +1,106 @@
 ---
 layout: default
 ---
-<ul class="post-list">
-    {% assign filtered_posts = site.posts | where:'status','released' %}
-    {% for post in filtered_posts %}
-    <li>
+{% assign member = site.data.members | first %}
 
-        <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
-        <a class="post-list-link" href="{{ post.url | prepend: site.baseurl }}">
-            <p class="post-meta-title">{{ post.title }}</p>
-        </a>
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">{{ member.description }}</p>
+        <h1>{{ member.name }}</h1>
+        <p class="lead">I help teams build reliable platforms, ship with confidence, and grow calm engineering cultures.</p>
+        <div class="cta-row">
+            {% if member.linkedin_username %}
+            <a class="btn primary" rel="noreferrer" href="https://linkedin.com/in/{{ member.linkedin_username }}" target="_blank">Connect on LinkedIn</a>
+            {% endif %}
+            {% if member.github_username %}
+            <a class="btn ghost" rel="noreferrer" href="https://github.com/{{ member.github_username }}" target="_blank">View GitHub</a>
+            {% endif %}
+            <a class="btn subtle" href="/about/">About</a>
+        </div>
+    </div>
+    <div class="hero-panel">
+        <div class="glass-card">
+            <p class="card-eyebrow">Focus Areas</p>
+            <ul class="chip-list">
+                <li>Platform reliability</li>
+                <li>Distributed teams</li>
+                <li>Product velocity</li>
+                <li>Architecture strategy</li>
+                <li>Developer experience</li>
+            </ul>
+        </div>
+        <div class="glass-card">
+            <p class="card-eyebrow">What I Value</p>
+            <p class="card-copy">Outcomes over output, clear ownership, and technical decisions that stay close to business reality.</p>
+        </div>
+    </div>
+</section>
 
-        <p class="post-meta-bottom">{{ post.content | strip_html | replace: '\n',' ' | truncate:350 ,"..." }}</p>
+<section class="feature-grid">
+    <div class="feature-card">
+        <h2>Engineering Leadership</h2>
+        <p>Mentoring engineers, aligning stakeholders, and creating the clarity teams need to move fast with care.</p>
+    </div>
+    <div class="feature-card">
+        <h2>Systems Architecture</h2>
+        <p>Designing resilient systems that scale across regions, teams, and evolving product surfaces.</p>
+    </div>
+    <div class="feature-card">
+        <h2>Delivery & Culture</h2>
+        <p>Building inclusive, high-trust environments that convert technical ambition into shipping momentum.</p>
+    </div>
+</section>
 
+<section class="content-section">
+    <div class="section-header">
+        <h2>Selected Work</h2>
+        <a class="section-link" href="/code/">Full portfolio</a>
+    </div>
+    <div class="work-grid">
+        {% assign sorted_code = site.code | sort: "year" | reverse %}
+        {% for code in sorted_code limit: 3 %}
+        <article class="work-card">
+            <div class="work-image">
+                <img alt="{{ code.title }}" src="{{ code.image }}">
+            </div>
+            <div class="work-body">
+                <p class="work-year">{{ code.year }}</p>
+                <h3><a href="{{ code.link }}" target="_blank" rel="noreferrer">{{ code.title }}</a></h3>
+                <p>{{ code.content | strip_html | truncate: 140 }}</p>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
 
-        <hr/>
-    </li>
-    {% endfor %}
-</ul>
+<section class="content-section">
+    <div class="section-header">
+        <h2>Writing</h2>
+        <a class="section-link" href="/posts/">All posts</a>
+    </div>
+    <div class="post-grid">
+        {% assign filtered_posts = site.posts | where:'status','released' %}
+        {% for post in filtered_posts limit: 3 %}
+        <article class="post-card">
+            <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+            <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+            <p>{{ post.content | strip_html | truncate: 140 }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-card">
+        <h2>Let’s build something steady and ambitious.</h2>
+        <p>Open to collaboration, leadership roles, or advising teams navigating scale.</p>
+        <div class="cta-row">
+            {% if member.linkedin_username %}
+            <a class="btn primary" rel="noreferrer" href="https://linkedin.com/in/{{ member.linkedin_username }}" target="_blank">Message me</a>
+            {% endif %}
+            {% if member.stackoverflow_username %}
+            <a class="btn ghost" rel="noreferrer" href="https://stackoverflow.com/users/3210551/chrisport" target="_blank">Stack Overflow</a>
+            {% endif %}
+        </div>
+    </div>
+</section>

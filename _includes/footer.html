@@ -1,32 +1,27 @@
 <footer class="site-footer">
-
-    <div class="wrapper">
-        {% for member in site.data.members %}
-        {% if member.stackoverflow_username %}
-        <span class="social-media-logo">
-            <a rel="noreferrer" href="https://stackoverflow.com/users/3210551/chrisport" target="_blank">
-                <i class="fa fa-stack-overflow fa-2x"></i>
+    <div class="wrapper footer-inner">
+        <p class="footer-copy">© {{ "now" | date: "%Y" }} Christoph Portmann. Built for humans.</p>
+        <div class="footer-links">
+            {% for member in site.data.members %}
+            {% if member.stackoverflow_username %}
+            <a class="footer-link" rel="noreferrer" href="https://stackoverflow.com/users/3210551/chrisport" target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+                <span>Stack Overflow</span>
             </a>
-          </span>
-        {% endif %}
-        {% if member.linkedin_username %}
-        <span class="social-media-logo">
-              <a rel="noreferrer"  href="https://linkedin.com/in/{{ member.linkedin_username }}" target="_blank">
-                  <i class="fa fa-linkedin-square fa-2x"></i>
-              </a>
-          </span>
-        {% endif %}
-        {% if member.github_username %}
-        <span class="social-media-logo">
-              <a rel="noreferrer"  href="https://github.com/{{ member.github_username }}" target="_blank">
-                  <i class="fa fa-github fa-2x"></i>
-              </a>
-          </span>
-        {% endif %}
-
-
-        {% endfor %}
-
+            {% endif %}
+            {% if member.linkedin_username %}
+            <a class="footer-link" rel="noreferrer" href="https://linkedin.com/in/{{ member.linkedin_username }}" target="_blank">
+                <i class="fa fa-linkedin-square"></i>
+                <span>LinkedIn</span>
+            </a>
+            {% endif %}
+            {% if member.github_username %}
+            <a class="footer-link" rel="noreferrer" href="https://github.com/{{ member.github_username }}" target="_blank">
+                <i class="fa fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </footer>
-

@@ -5,30 +5,30 @@
 
 
 // Our variables
-$base-font-family: 'Open Sans', sans-serif;;//Helvetica, Arial, sans-serif;
-$headers-font-family: Ubuntu, sans-serif;//Helvetica, Arial, sans-serif;
-$site-title-font-family: 'Italiana', sans-serif;//Helvetica, Arial, sans-serif;
-$base-font-size:   15px;
+$base-font-family: 'Space Grotesk', sans-serif;
+$headers-font-family: 'Fraunces', serif;
+$site-title-font-family: 'Fraunces', serif;
+$base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 //'Lily Script One' |Noto Serif|Lobster|Fugaz One|Aladin|Cookie|Abril Fatface|Italiana|Bentham
 $spacing-unit:     30px;
 
-$text-color-dark-link: #5c5c80;
-$text-color-dark-visited: #5c5c5c;
-$text-color-dark: #4C4C4C;
-$text-color:       #4C4C4C;
-$background-color: #f5f5f5;
-$background-color-transparent: rgba(245, 245, 245, 0.5);
-$brand-color: #960100;
-$brand-color-transparent:rgba(150, 1, 0, 0.75);
+$text-color-dark-link: #3b3b3b;
+$text-color-dark-visited: #4a4a4a;
+$text-color-dark: #2f2f2f;
+$text-color:       #2b2b2b;
+$background-color: #f7f2ec;
+$background-color-transparent: rgba(247, 242, 236, 0.65);
+$brand-color: #c05a2b;
+$brand-color-transparent: rgba(192, 90, 43, 0.82);
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
-$on-palm:          600px;
-$on-laptop:        800px;
+$on-palm:          720px;
+$on-laptop:        1024px;
 
 
 
