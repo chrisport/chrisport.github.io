@@ -5,13 +5,14 @@ date:   2015-01-12 10:00
 categories: "Golang"
 author: Christoph Portmann
 status: "released"
+outdated: true
 ---
 
-*Disclaimer 2020: Distributed tracing is provided by various libraries (like Sleuth). Please consider existing, battle-proof libraries before implementing something yourself.*
+*Disclaimer 2020/2026: Distributed tracing is provided by various mature libraries, prominently by the standard OpenTelemetry. Please consider these before implementing anything yourself.*
 
 In a microservice architecture, one request can lead to multiple log entries 
 distributed across services.
-One client request can cause multiple internal requests, which again can cause requests.
+One client request can cause multiple internal requests, which in turn can cause further requests.
 This can lead to unwanted depth of requests which leads to high latency.
 I worked in a system with central logging using the ELK stack. It was easy to search for log entries and even
 to search for all entries by unique ID per request. But the possibilities to analyse request trees were very limited.
@@ -21,14 +22,14 @@ invented but reflect our experiences.
 ### Request Trees
 The [DOT graph description language](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) is used to create
 graphs in plain text, which can be visualized using tools like [Graphviz](https://www.graphviz.org/).
-The language can be understood in few minutes which makes it easy to work with. Here an example
-{% highlight go %}
+The language can be understood in few minutes which makes it easy to work with. Here is an example:
+{% highlight text %}
     digraph "/pay" {
       "CLIENT" -> "proxy"
       "Proxy" -> "BillService"
       "BillService" -> "UserService"
-      "BillService" -> "BankGateaway"
-      "BankGateaway" -> "AuditService"
+      "BillService" -> "BankGateway"
+      "BankGateway" -> "AuditService"
     }
 {% endhighlight %}
 
@@ -42,30 +43,30 @@ You can store this in a .dot or .gv file and open it with GraphViz.
 As mentioned it is not possible to track a chain if there is only a unique ID per request, since one service
 can call multiple other services and do this even in parallel.
 Therefore we need three parts, a Unique Request ID, a Caller ID and a Receiver ID.
-For fast implementation I just modified the uniqueID to be in format
-{% highlight go %}
+For a fast implementation I just modified the unique ID to be in the format
+{% highlight text %}
 <FixedRequestId>::<LastCallerID>::<ReceiverId>
 {% endhighlight %}
 
 A chain from the example above can now easily be parsed and printed in dot notation. The IDs from the example above
 would be the following:
-{% highlight go %}
+{% highlight text %}
 Proxy           UID
 BillService     UID::BillServiceID
 UserService     UID::BillServiceID::UserServiceID
-BankGateaway    UID::BillServiceID::BankGateawayID
-AuditService    UID::BankGateawayID::AuditServiceID
+BankGateway    UID::BillServiceID::BankGatewayID
+AuditService    UID::BankGatewayID::AuditServiceID
 {% endhighlight %}
 
 ![Visualization of request with elapsed time ](/images/ex2-5.png)
 
-The go function to create this IDs is simple as
+The Go function to create these IDs is as simple as
 
 {% highlight go %}
 func transformUniqueId(parentUID string) string {
   ids := strings.Split(parentUID, "::")
 
-  if len(uid) < 3 {
+  if len(ids) < 3 {
     return parentUID + "::" + getNextInstanceId()
   }
 
@@ -84,7 +85,7 @@ After some logs have been produced, I wrote a parser for analysing these logs.
 A simple Golang interface represents a log entry:
 {% highlight go %}
 type Log interface {
-	// RequestUID returns the unique ID of the original request
+	// RequestID returns the unique ID of the original request
 	RequestID() string
 
 	// String returns a string representation of the log
@@ -111,7 +112,7 @@ logs are stored in a map or slice which can be iterated, sorted and filtered for
 
 ### Results of analysis
 
-Here are three examples of results than can easily be produces with the parsed logs:
+Here are three examples of results that can easily be produced with the parsed logs:
 
 **1. Request tree and elapsed time**
 
@@ -130,17 +131,17 @@ The graphic shows which service takes how much time in a clean way.
 
 This graphic shows system wide calls. It is created over a certain time period and shows absolute numbers of total requests.
 Please note, one node is one service, not one running instance.
-We can make the following interpretations
+We can make the following interpretations:
 
 - Service A, C and H call other services through proxy. This is unnecessary and should be corrected.
 - Service C calls itself, these calls should be refactored to method calls.
-- Service D is called most by far. This calls are very cheap and caused by a temporary solution. Therefore it can be ignored.
+- Service D is called most by far. These calls are very cheap and caused by a temporary solution. Therefore it can be ignored.
 - Service F is called directly, the system would be cleaner if we can redirect those calls through the proxy.
 
 **3. Outgoing requests per incoming requests**
 Example:
 
-{% highlight go %}
+{% highlight text %}
 
 6.5322833   ServiceA
 2.5714285   ServiceB
@@ -149,7 +150,7 @@ Example:
 {% endhighlight %}
 
 
-This ratio can show some flaw in the services. Some may have a high number because they basically
+This ratio can reveal flaws in the services. Some may have a high number because they basically
 aggregate data from other services, but they should be investigated. Also it can be seen that Proxy is almost but not
-exactly 1. This 0.0013 difference are invalid requests which the proxy couldn't resolve and responded with "service not found".
+exactly 1. This 0.0013 difference consists of invalid requests which the proxy couldn't resolve and responded with "service not found".
 A similar statistic can be made per endpoint.

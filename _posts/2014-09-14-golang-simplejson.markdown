@@ -6,21 +6,22 @@ categories: "Golang"
 github: https://github.com/chrisport/simplejson
 author: Christoph Portmann
 status: "released"
+outdated: true
 ---
-Simplejson is an imitation of Java's json-simple for go language. It allows to access json-data without the overhead of
+Simplejson is an imitation of Java's json-simple for the Go language. It allows you to access JSON data without the overhead of
 predefining a model or casting elements manually. Therefore it is useful, whenever you want to get data from different schemas
-in a quick and clean way. It additionally provides a handy Error-handling, as well as segmented keys to directly access
+in a quick and clean way. It additionally provides handy error handling, as well as segmented keys to directly access
 nested Objects and Arrays. Current Version is 0.3 and its API will change slightly to allow a better error handling in the next version.
 
 ### Context
 
-While developing a configuration reader, I came across the problem: how to generically access data in a nested json-files in golang.
+While developing a configuration reader, I came across the problem: how to generically access data in nested JSON files in Go.
 Golang's native json-package provides methods to access data in json-format by unmarshaling into a predefined struct. 
-Therefore to handle various config-files, every project had to define it's own config-model that is used
-to unmarshall data and this was a pain.  
-If the type is not clear you are always free to parse it to a map[string] interface{}, but it means you need to 
- cast the elements you access on this map (except they are all of same type, e.g. map[string] string)
-But when you have nested data, it gets a pain quickly, because in every step you need to cast the elements.  
+Therefore to handle various config-files, every project had to define its own config model that is used
+to unmarshal data and this was a pain.  
+If the type is not clear, you are always free to parse it into a map[string]interface{}, but it means you need to 
+ cast the elements you access on this map (unless they are all of the same type, e.g. map[string]string).
+But when you have nested data, it quickly becomes a pain, because in every step you need to cast the elements.  
 Let's look at an example.
 Json config file:
 {% highlight json %}
@@ -32,8 +33,8 @@ Json config file:
             "method": "GET"
         },
         {
-            "path": "events/id/: id",
-            "url": "http: //api.eventmanager.com/events",
+            "path": "events/id/:id",
+            "url": "https://api.eventmanager.com/events",
             "method": "GET"
         }
     ],
@@ -46,7 +47,7 @@ To access the "path"-attribute of the first route, there is the first solution i
 
 {% highlight go %}
 
-// defined the base map
+// define the base map
 var rootMap map[string] interface{}
 // unmarshal data into map
 json.Unmarshal(data, &rootMap)
@@ -80,11 +81,11 @@ From Java I am familiar with json-simple, which allows you to access json-data l
 //parse to json
 JSONObject rootObject = new JSONObject(data);
 //get object
-String pathOfFirstObject = object.getJSONArray("routes").getJSONObject(0).getString("path");
+String pathOfFirstObject = rootObject.getJSONArray("routes").getJSONObject(0).getString("path");
 {% endhighlight %}
 
 
-The implementation of json-simple in golang allows to do exactly the same:
+The implementation of json-simple in Go allows to do exactly the same:
 
 {% highlight go %}
 
@@ -94,7 +95,7 @@ pathOfFirstObject, _ := rootObject.JSONArray("routes").JSONObject(0).String("pat
 {% endhighlight %}
 
 ### Direct access through segmented keys
-Beside chaining calls, you have also the possibility to directly access nested data by providing a segmented key-string.
+Besides chaining calls, you have also the possibility to directly access nested data by providing a segmented key-string.
 To access the example data, you would call the key "routes::0::path":
 
 {% highlight go %}
@@ -107,7 +108,7 @@ pathOfFirstObject, _ := rootObject.String("routes::0::path")
 This feature is planned to be included in Version 0.4.
 For sure Error handling is an important topic. In Java we have the possibility to wrap the whole chain
 into a Try-Catch block, which prevents the application from crashing, but may hide the source of the error.
-For this implementation you can do something similar::
+For this implementation you can do something similar:
 
 {% highlight go %}
 

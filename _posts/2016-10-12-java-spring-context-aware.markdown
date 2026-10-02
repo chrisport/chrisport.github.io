@@ -6,10 +6,11 @@ categories: "Java"
 github: https://github.com/chrisport/thread-context-demo
 author: Christoph Portmann
 status: "released"
+outdated: true
 ---
 Recently I came across the problem of ThreadLocal context in multithreaded environment.
 If the Thread that handled a request uses an [Executor](https://docs.oracle.com/javase/tutorial/essential/concurrency/exinter.html) 
-to asynchronously execute tasks, the ThreadLocal context is lost and information such as requestId will be be missing in the logs.    
+to asynchronously execute tasks, the ThreadLocal context is lost and information such as requestId will be missing in the logs.    
 We can solve this using the Decorator pattern:   
 
 1. Wrap Runnable to preserve caller Thread's context
@@ -24,7 +25,7 @@ Please note:
 ### 1. Make the runnable context aware
 
 To pass the MDC of the caller Thread to the executor Thread, we get a copy of the ContextMap.  
-Then we set this context map before execution of the task and reset it after the execution.      
+Then we set this context map before execution of the task and reset it after the execution, even if the task fails.      
 
 {% highlight java %}
  
@@ -41,13 +42,15 @@ Runnable ctxAwareTask = () -> {
     MDC.setContextMap(callerContextCopy);
   }
 
-  // execute the command
-  command.run();
-
-  MDC.clear();
-  if (executorContextCopy != null) {
-    // reset the context
-    MDC.setContextMap(executorContextCopy);
+  try {
+    // execute the command
+    command.run();
+  } finally {
+    // reset the context, even if the command throws
+    MDC.clear();
+    if (executorContextCopy != null) {
+      MDC.setContextMap(executorContextCopy);
+    }
   }
 };
 
@@ -63,7 +66,7 @@ public class ContextAwareExecutorDecorator implements Executor, TaskExecutor {
 
     private final Executor executor;
 
-    public ContextAwareExecutor(Executor executor) {
+    public ContextAwareExecutorDecorator(Executor executor) {
         this.executor = executor;
     }
 
@@ -117,7 +120,7 @@ public class AppConfig extends AsyncConfigurerSupport {
 
 There is a small [sample application](https://github.com/chrisport/thread-context-demo) on Github. It has a service, which
 has an @Async method. After startup, the service is called 10 times with a specific MDC context containing the loop-count and
-the caller's threadId. The asynchronous service method prints its MDC to the log, which should contain the original mentioned properties.
+the caller's threadId. The asynchronous service method prints its MDC to the log, which should contain the originally mentioned properties.
 
 Without our ContextAwareExecutorDecorator, we will encounter the initially described problem: the ThreadLocal context gets lost.   
 In that case the log looks like this:   

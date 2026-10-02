@@ -12,9 +12,9 @@ weight : 2
     {% assign filtered_posts = site.posts | where:'status','released' %}
     {% for post in filtered_posts %}
     <li>
-        <p class="post-meta-top">{{ post.categories[0] | upcase }}</p>
+        <p class="post-meta-top">{{ post.date | date: "%b %-d, %Y" }} • {{ post.categories[0] | upcase }}</p>
         <a class="post-list-link" href="{{ post.url | prepend: site.baseurl }}">
-            <p class="post-meta-title">{{ post.title }} ({{ post.date | date: "%Y" }})</p>
+            <p class="post-meta-title">{{ post.title }}</p>
         </a>
 
         <p class="post-meta-bottom">{{ post.content | strip_html | replace: '\n',' ' | truncate:350 ,"..." }}</p>

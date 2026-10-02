@@ -284,6 +284,14 @@ hr {
   border-style: dashed;
 }
 
+.outdated-notice {
+  padding: 0.75em 1em;
+  margin-bottom: $spacing-unit;
+  font-size: $small-font-size;
+  background: #fff6e0;
+  border-left: 4px solid #e0a800;
+}
+
 .post-header {
   margin-bottom: $spacing-unit;
 }
