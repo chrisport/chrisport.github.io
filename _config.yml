@@ -1,9 +1,17 @@
 # Site settings
 title: chrisport.ch
+description: Christoph Portmann — software engineer and tech lead. Posts and projects on Go, Java, and building software in teams.
+lang: en
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://chrisport.github.io" # the base hostname & protocol for your site
+url: "https://chrisport.ch" # the base hostname & protocol for your site (matches CNAME)
 collections:
   code:
     output: true
 # Build settings
 markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .idea
